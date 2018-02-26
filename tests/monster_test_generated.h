@@ -64,6 +64,8 @@ inline flatbuffers::TypeTable *AbilityTypeTable();
 
 inline flatbuffers::TypeTable *StatTypeTable();
 
+inline flatbuffers::TypeTable *ReferrableTypeTable();
+
 inline flatbuffers::TypeTable *MonsterTypeTable();
 
 inline flatbuffers::TypeTable *TypeAliasesTypeTable();
@@ -617,6 +619,9 @@ struct ReferrableT : public flatbuffers::NativeTable {
 
 struct Referrable FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ReferrableT NativeTableType;
+  static flatbuffers::TypeTable *MiniReflectTypeTable() {
+    return ReferrableTypeTable();
+  }
   enum {
     VT_ID = 4
   };
@@ -2093,34 +2098,6 @@ inline void AnyUnion::Reset() {
   value = nullptr;
   type = Any_NONE;
 }
-
-}  // namespace Example
-
-inline flatbuffers::TypeTable *InParentNamespaceTypeTable();
-
-namespace Example2 {
-
-inline flatbuffers::TypeTable *MonsterTypeTable();
-
-}  // namespace Example2
-
-namespace Example {
-
-inline flatbuffers::TypeTable *TestTypeTable();
-
-inline flatbuffers::TypeTable *TestSimpleTableWithEnumTypeTable();
-
-inline flatbuffers::TypeTable *Vec3TypeTable();
-
-inline flatbuffers::TypeTable *AbilityTypeTable();
-
-inline flatbuffers::TypeTable *StatTypeTable();
-
-inline flatbuffers::TypeTable *ReferrableTypeTable();
-
-inline flatbuffers::TypeTable *MonsterTypeTable();
-
-inline flatbuffers::TypeTable *TypeAliasesTypeTable();
 
 inline flatbuffers::TypeTable *ColorTypeTable() {
   static flatbuffers::TypeCode type_codes[] = {
